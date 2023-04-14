@@ -1,0 +1,39 @@
+{
+    "key": "18d768d0-3750-4f5e-908e-2ad55e3727f3",
+    "type": "REST",
+    "outcomes": [
+        { "key": "success", "next": "nextActivity" },
+        { "key": "error" }
+    ],
+    "metaData": {
+        "icon": "https://example.com/customactivityicon.png",
+        "category": "custom"
+    },
+    "arguments": {
+        "inputs": [
+            { "key": "inputValue", "type": "Text", "label": "Input Value" }
+        ],
+        "outputs": [
+            { "key": "outputValue", "type": "Text", "label": "Output Value" }
+        ]
+    },
+    "configurationArguments": {
+        "save": {
+            "url": "https://demo112.herokuapp.com/api/save",
+            "body": "{{JSON.stringify({\"inputValue\": \"{{Activity.Inputs.inputValue}}\"})}}",
+            "verb": "POST",
+            "useJwt": true
+        },
+        "publish": {
+            "url": "https://demo112.herokuapp.com/api/publish",
+            "body": "{{JSON.stringify({\"outputValue\": \"{{Activity.Inputs.inputValue}}\"})}}",
+            "verb": "POST",
+            "useJwt": true
+        },
+        "validate": {
+            "url": "https://demo112.herokuapp.com/api/validate",
+            "verb": "POST",
+            "useJwt": true
+        }
+    }
+}
